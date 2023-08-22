@@ -5,6 +5,12 @@ const mongoose = require("mongoose");
 
 // ROUTERS
 const clientAuth = require("./routes/clientAuth");
+const freelancer = require("./routes/freelancerAuth")
+const booking = require("./routes/bookings")
+const transaction = require("./routes/Transactions")
+const business = require("./routes/business");
+const comments = require("./routes/comments")
+const request = require("./routes/Request")
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -28,3 +34,5 @@ mongoose.connect(process.env.MONGODB_URL, {}).then((resp) => {
 
 // ROUTES
 app.use("/client", clientAuth);
+app.use("/freelancer",freelancer)
+app.use('/business',business)
