@@ -44,7 +44,6 @@ const newClient = async(req,res)=>{
     }catch(err){
         res.json({msg:err.message})
     }
-    res.json(data)
 }
 
 //loggin in a client
