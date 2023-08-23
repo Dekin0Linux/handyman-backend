@@ -2,15 +2,16 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
 
 // ROUTERS
 const clientAuth = require("./routes/clientAuth");
-const freelancer = require("./routes/freelancerAuth")
-const booking = require("./routes/bookings")
-const transaction = require("./routes/Transactions")
+const freelancer = require("./routes/freelancerAuth");
+const booking = require("./routes/bookings");
+const transaction = require("./routes/Transactions");
 const business = require("./routes/business");
-const comments = require("./routes/comments")
-const request = require("./routes/Request")
+const comments = require("./routes/comments");
+const request = require("./routes/Request");
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -24,6 +25,10 @@ app.use(
 
 // MIDDLEWARES
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+// Serve static files from the client folder
+app.use(express.static(path.join(__dirname, "Handyman")));
 //connect to mongodb database using Mongoose and the connection string from .env file
 mongoose.connect(process.env.MONGODB_URL, {}).then((resp) => {
   app.listen(port, () => {
@@ -34,5 +39,5 @@ mongoose.connect(process.env.MONGODB_URL, {}).then((resp) => {
 
 // ROUTES
 app.use("/client", clientAuth);
-app.use("/freelancer",freelancer)
-app.use('/business',business)
+app.use("/freelancer", freelancer);
+app.use("/business", business);

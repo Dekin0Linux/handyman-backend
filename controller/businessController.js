@@ -17,13 +17,36 @@ const getAllBusiness = async (req, res) => {
   }
 };
 
+// Get a single business
+const getBusiness = async (req, res) => {
+  try {
+    const singleBusiness = await businessModel
+      .findById(req.params.id)
+      .populate("freelancer");
+    res.status(200).json({
+      status: "success",
+      data: {
+        singleBusiness,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
 // ADD NEW BUSINESS
 const newBusiness = async (req, res) => {
   try {
-    const imageFile = req.file
+    const imageFile = req.file;
     const data = req.body;
-    
-    let newbusiness = await businessModel.create({...data,image:imageFile.filename});
+
+    let newbusiness = await businessModel.create({
+      ...data,
+      image: imageFile.filename,
+    });
     if (!newbusiness) {
       return res.json({ msg: "Business could not be created" });
     } else {
@@ -52,23 +75,24 @@ const updateBusiness = async (req, res) => {
 };
 
 // DELETE BUSINESS
-const removeBusiness = async (req,res)=>{
-    const { businessId } = req.params;
-    try{
-        const deleted=await businessModel.deleteOne({"_id":businessId});
-        if(!deleted){
-            throw Error('Couldnt delete');
-        }else{
-            res.json({msg: "Business Deleted Successfully"})
-        }
-    }catch(err){
-        res.json({msg:err.message}).status(501)
+const removeBusiness = async (req, res) => {
+  const { businessId } = req.params;
+  try {
+    const deleted = await businessModel.deleteOne({ _id: businessId });
+    if (!deleted) {
+      throw Error("Couldnt delete");
+    } else {
+      res.json({ msg: "Business Deleted Successfully" });
     }
-}
+  } catch (err) {
+    res.json({ msg: err.message }).status(501);
+  }
+};
 
 module.exports = {
   getAllBusiness,
+  getBusiness,
   newBusiness,
   updateBusiness,
-  removeBusiness
+  removeBusiness,
 };
