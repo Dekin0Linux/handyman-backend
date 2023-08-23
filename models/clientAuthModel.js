@@ -34,7 +34,7 @@ const userAuthSchema = mongoose.Schema({
     enum: ["active", "blocked"],
     default: "active",
   },
-});
+},{timestamps:true});
 
 const userAuthModel = mongoose.model("client", userAuthSchema);
 module.exports = userAuthModel;
