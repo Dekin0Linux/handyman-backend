@@ -41,3 +41,6 @@ mongoose.connect(process.env.MONGODB_URL, {}).then((resp) => {
 app.use("/client", clientAuth);
 app.use("/freelancer", freelancer);
 app.use("/business", business);
+app.use('/comments',comments)
+app.use('/request',request)
+app.use('/transaction',transaction)

@@ -50,7 +50,8 @@ const businessSchema = mongoose.Schema({
     charge:{
         type:Number,
         default:0
-    }
+    },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'comment' }]
 },{timestamps: true})
 
 const businessModel = mongoose.model('business',businessSchema)

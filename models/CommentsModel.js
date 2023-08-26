@@ -1,12 +1,12 @@
 const mongoose = require("mongoose")
 
 const commentSchema = mongoose.Schema({
-    freelancer : {
-        type : mongoose.SchemaType.ObjectId,
-        ref : "freelancer"
+    business : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "business"
     },
     client : {
-        type: mongoose.SchemaTypes.ObjectId ,
+        type: mongoose.Schema.Types.ObjectId ,
         ref:"client",
     },
     comment : {
@@ -18,3 +18,6 @@ const commentSchema = mongoose.Schema({
         default:Date()
     }
 })
+
+
+module.exports = mongoose.model('comment',commentSchema)

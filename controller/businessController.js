@@ -6,7 +6,7 @@ const getAllBusiness = async (req, res) => {
       .find({})
       .where("status")
       .equals("active")
-      .populate("freelancer");
+      .populate(["freelancer",'comments']);
     if (!allBusiness) {
       return res.status(401).json({ message: "No data found" });
     } else {
@@ -22,7 +22,7 @@ const getBusiness = async (req, res) => {
   try {
     const singleBusiness = await businessModel
       .findById(req.params.id)
-      .populate("freelancer");
+      .populate(["freelancer",'comments']);
     res.status(200).json({
       status: "success",
       data: {
@@ -36,6 +36,23 @@ const getBusiness = async (req, res) => {
     });
   }
 };
+
+
+// FIND BY CATEGORY
+const categoryFreelancer= async(req,res)=>{
+    const {category} = req.params;
+    try{
+                const freelancers = await businessModel.find({category}).populate('freelancer')
+        if(!freelancers){
+            return  res.status(500).send('no freelancers in this category')
+        }else{
+            return res.status(200).json(freelancers)
+        }
+    }catch(err){
+        res.json({msg:err.message})
+    }
+}
+
 
 // ADD NEW BUSINESS
 const newBusiness = async (req, res) => {
@@ -95,4 +112,5 @@ module.exports = {
   newBusiness,
   updateBusiness,
   removeBusiness,
+  categoryFreelancer
 };

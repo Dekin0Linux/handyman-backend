@@ -4,6 +4,7 @@ const {
   updateBusiness,
   removeBusiness,
   getBusiness,
+  categoryFreelancer,
 } = require("../controller/businessController");
 const multer = require("multer");
 const router = require("express").Router();
@@ -35,6 +36,9 @@ const uploadFile = multer({
 
 router.get("/", getAllBusiness);
 router.get("/:id", getBusiness);
+
+// GET BY CATEGORY
+router.get("/getcatgory/:category",categoryFreelancer)
 
 // ADD NEW BUSINESS
 router.post("/newBusiness", uploadFile.single("image"), newBusiness);
