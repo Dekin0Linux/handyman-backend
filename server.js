@@ -43,3 +43,4 @@ app.use("/freelancer", freelancer);
 app.use("/business", business);
 app.use('/comments',comments)
 app.use('/request',request)
+app.use('/transaction',transaction)

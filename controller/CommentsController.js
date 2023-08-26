@@ -29,22 +29,23 @@ const newComment = async(req,res)=>{
 }
 
 // COMMENTS BY USER ID
-// get request by client id
-// const getBusineesById = async(req,res)=>{
-//   const {clientId} = req.body
-//   try{
-//       const getById = await requestModel.find({}).where('client').equals(clientId)
-//       if(!getById){
-//           res.json({msg:'User could not be found'}).status(404)
-//       }else{
-//           return res.json(getById).status(200)
-//       }
-//   }catch(err){
-//       res.json({msg:'err.message'}).json(400)
-//   }
-// }
+// get request by business id
+const getBussComment = async(req,res)=>{
+  const {businessId} = req.params
+  try{
+      const getById = await commentModel.find({}).where('business').equals(businessId)
+      if(!getById){
+          res.json({msg:'User could not be found'}).status(404)
+      }else{
+          return res.json(getById).status(200)
+      }
+  }catch(err){
+      res.json({msg:'err.message'}).json(400)
+  }
+}
 
 module.exports = {
     newComment,
-    getComments
+    getComments,
+    getBussComment
 }

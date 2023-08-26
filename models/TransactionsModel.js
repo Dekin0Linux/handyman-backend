@@ -12,7 +12,7 @@ const transactionSchema = mongoose.Schema({
         required : true
     },
     amount : {
-        type : number,
+        type : Number,
         required : true,
     },
     date:{
@@ -21,7 +21,7 @@ const transactionSchema = mongoose.Schema({
     },
     status:{
         type: String,  //pending or completed
-        default:'Pending',
+        enum : ['success','pending']
     },
     transactionRef : {
         type : String,
