@@ -1,6 +1,33 @@
 const mongoose = require("mongoose")
 
-const transactionSchema = mongoose.Schema({})
+const transactionSchema = mongoose.Schema({
+    business : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "business",
+        required : true
+    },
+    client : {
+        type: mongoose.Schema.Types.ObjectId ,
+        ref:"client",
+        required : true
+    },
+    amount : {
+        type : number,
+        required : true,
+    },
+    date:{
+        type: Date,
+        default:Date()
+    },
+    status:{
+        type: String,  //pending or completed
+        default:'Pending',
+    },
+    transactionRef : {
+        type : String,
+        required : true
+    }
+})
 
 
 
