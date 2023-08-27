@@ -45,16 +45,20 @@ const newClient = async (req, res) => {
 
 //login in a client
 const login = async (req, res) => {
-  const { email, password } = req.body;
-
   try {
+    const { email, password } = req.body;
     const loginUser = await clientAuthModel
-      .where("email", email)
-      .where("password", password);
+      .findOne({})
+      .where("email")
+      .equals(email)
+      .where("password")
+      .equals(password);
+
     if (!loginUser) {
-      return res.status("409").json({ msg: "User not created" });
+      return res.json({ msg: "User not found", status: "404" }).status(404);
+    } else {
+      return res.json({ msg: "User found", loginUser }).status(200);
     }
-    res.json(loginUser).status(200);
   } catch (err) {
     res.json({ msg: err.message });
   }
@@ -68,7 +72,7 @@ const updateClient = async (req, res) => {
   try {
     const clients = await clientAuthModel.updateOne({ _id: clientId }, data);
     if (!clients) {
-      res.json({ msg: "No client found" });
+      res.json({ msg: "No client found" }).status(404);
     } else {
       res.json(clients);
     }
