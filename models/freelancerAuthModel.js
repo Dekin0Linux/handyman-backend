@@ -37,10 +37,6 @@ const freelancerSchema = mongoose.Schema({
         type : String,
         required : true
     },
-    charge:{
-        type : Number,
-        default : 20,
-    },
     isActive:{
         type : Boolean,
         default : true

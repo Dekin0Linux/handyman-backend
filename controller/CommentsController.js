@@ -33,7 +33,7 @@ const newComment = async(req,res)=>{
 const getBussComment = async(req,res)=>{
   const {businessId} = req.params
   try{
-      const getById = await commentModel.find({}).where('business').equals(businessId)
+      const getById = await commentModel.find({}).where('business').equals(businessId).populate('client')
       if(!getById){
           res.json({msg:'User could not be found'}).status(404)
       }else{

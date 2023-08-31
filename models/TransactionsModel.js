@@ -1,9 +1,9 @@
 const mongoose = require("mongoose")
 
 const transactionSchema = mongoose.Schema({
-    business : {
+    request : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : "business",
+        ref : "request",
         required : true
     },
     client : {
@@ -21,7 +21,8 @@ const transactionSchema = mongoose.Schema({
     },
     status:{
         type: String,  //pending or completed
-        enum : ['success','pending']
+        enum : ['success','pending'],
+        default:'success'
     },
     transactionRef : {
         type : String,

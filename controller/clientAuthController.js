@@ -97,6 +97,69 @@ const deleteClient = async (req, res) => {
   }
 };
 
+// ADD TO BALANCE
+const addBalance = async (req, res) => {
+  const { clientId } = req.params;
+  const { amount } = req.body;
+
+  try {
+    // Convert the amount value to a number
+    const amountToAdd = Number(amount);
+
+    // Find the existing business document
+    const existingClient = await clientAuthModel.findOne({ _id: clientId });
+
+    if (!existingClient) {
+      return res.json({ msg: "No business found" });
+    }
+
+    // Calculate the new balance
+    const newBalance = existingClient.balance + amountToAdd;
+
+    // Update the balance in the database
+    const updatedClient = await clientAuthModel.updateOne(
+      { _id: clientId },
+      { $set: { balance: newBalance } }
+    );
+
+    res.json(updatedClient);
+  } catch (err) {
+    res.json({ msg: err.message });
+  }
+};
+
+// DEDUCT TO BALANCE
+const deductBalance = async (req, res) => {
+  const { clientId } = req.params;
+  const { amount } = req.body;
+
+  try {
+    // Convert the amount value to a number
+    const amountToAdd = Number(amount);
+
+    // Find the existing business document
+    const existingClient = await clientAuthModel.findOne({ _id: clientId });
+
+    if (!existingClient) {
+      return res.json({ msg: "No business found" });
+    }
+
+    // Calculate the new balance
+    const newBalance = existingClient.balance - amountToAdd;
+
+    // Update the balance in the database
+    const updatedClient = await clientAuthModel.updateOne(
+      { _id: clientId },
+      { $set: { balance: newBalance } }
+    );
+
+    res.json(updatedClient);
+  } catch (err) {
+    res.json({ msg: err.message });
+  }
+};
+
+
 module.exports = {
   getClients,
   getSingleClient,
@@ -104,4 +167,6 @@ module.exports = {
   login,
   updateClient,
   deleteClient,
+  addBalance,
+  deductBalance
 };

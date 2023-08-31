@@ -38,8 +38,8 @@ const requestSchema = mongoose.Schema({
     },
     requestStatus : {
         type : String,
-        enum : ['accepted','pending','cancelled'],
-        default : 'pending'
+        default : 'pending',
+        // enum : ['accepted','pending','cancelled','paid','completed'],
     },
 },{timestamps : true})
 
