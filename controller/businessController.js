@@ -106,11 +106,77 @@ const removeBusiness = async (req, res) => {
   }
 };
 
+
+// ADD ADD TO BALANCE
+const addToBalance = async (req, res) => {
+  const { businessId } = req.params;
+  const { amount } = req.body;
+
+  try {
+    // Convert the amount value to a number
+    const amountToAdd = Number(amount);
+
+    // Find the existing business document
+    const existingBusiness = await businessModel.findOne({ _id: businessId });
+
+    if (!existingBusiness) {
+      return res.json({ msg: "No business found" });
+    }
+
+    // Calculate the new balance
+    const newBalance = existingBusiness.balance + amountToAdd;
+
+    // Update the balance in the database
+    const updatedBusiness = await businessModel.updateOne(
+      { _id: businessId },
+      { $set: { balance: newBalance } }
+    );
+
+    res.json(updatedBusiness);
+  } catch (err) {
+    res.json({ msg: err.message });
+  }
+};
+
+// DEDUCT FROM BALANCE
+const deductBalance = async (req, res) => {
+  const { businessId } = req.params;
+  const { amount } = req.body;
+
+  try {
+    // Convert the amount value to a number
+    const amountToDeduct = Number(amount);
+
+    // Find the existing business document
+    const existingBusiness = await businessModel.findOne({ _id: businessId });
+
+    if (!existingBusiness) {
+      return res.json({ msg: "No business found" });
+    }
+
+    // Calculate the new balance
+    const newBalance = existingBusiness.balance - amountToDeduct;
+
+    // Update the balance in the database
+    const updatedBusiness = await businessModel.updateOne(
+      { _id: businessId },
+      { $set: { balance: newBalance } }
+    );
+
+    res.json(updatedBusiness);
+  } catch (err) {
+    res.json({ msg: err.message });
+  }
+};
+
+
 module.exports = {
   getAllBusiness,
   getBusiness,
   newBusiness,
   updateBusiness,
   removeBusiness,
-  categoryFreelancer
+  categoryFreelancer,
+  addToBalance,
+  deductBalance
 };

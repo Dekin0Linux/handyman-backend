@@ -16,16 +16,17 @@ const getAllRequest = async(req,res)=>{
 
 // get request by client id
 const getRequestById = async(req,res)=>{
-    const {clientId} = req.body
+    const {id} = req.params
     try{
-        const getById = await requestModel.find({}).where('client').equals(clientId)
+        const getById = await requestModel.find({client:id}).populate(['business','client'])
         if(!getById){
             res.json({msg:'User could not be found'}).status(404)
         }else{
             return res.json(getById).status(200)
         }
+        // res.send(clientId)
     }catch(err){
-        res.json({msg:'err.message'}).json(400)
+        res.json({msg:err.message}).json(400)
     }
 }
 

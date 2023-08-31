@@ -6,7 +6,7 @@ const router = require("express").Router()
 
 router.get('/',getAllRequest)
 
-router.get('/requestById',getRequestById)
+router.get('/requestById/:id',getRequestById)
 
 router.post('/',newRequest)
 

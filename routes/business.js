@@ -5,6 +5,8 @@ const {
   removeBusiness,
   getBusiness,
   categoryFreelancer,
+  deductBalance,
+  addToBalance,
 } = require("../controller/businessController");
 const multer = require("multer");
 const router = require("express").Router();
@@ -45,6 +47,8 @@ router.post("/newBusiness", uploadFile.single("image"), newBusiness);
 
 // UPDATE BUSINESS
 router.patch("/updateBusiness/:businessId", updateBusiness);
+router.patch("/addbalance/:businessId", addToBalance); // ADD MONEY TO BLANCE
+router.patch("/deductBalance/:businessId", deductBalance); //DEDUCT FROM BALANCE
 
 // delete business
 router.delete("/deleteBusiness/:businessId", removeBusiness);
