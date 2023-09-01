@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname, "Handyman")));
 mongoose.connect(process.env.MONGODB_URL, {}).then((resp) => {
   app.listen(port, () => {
     console.log(`Server is running on ${port}`);
-    console.log("Connected to DB");
+    console.log("Connected to DBase");
   });
 });
 
