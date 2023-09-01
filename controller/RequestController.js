@@ -69,20 +69,20 @@ const updateRequest = async (req, res) => {
     res.json({ msg: err.message });
   }
 };
-const updateRequest = async(req,res)=>{
-    const data = req.body;
-    const {requestId} = req.params
-    try {
-        const editRequest = await requestModel.updateOne({ _id: requestId }, data,{new:true});
-        if (!editRequest){ 
-          res.json({ msg: "No client found" }).status(404);
-        } else {
-          res.json(editRequest).status(200);
-        }
-      } catch (err) {
-        res.json({ msg: err.message });
-      }
-}
+// const updateRequest = async(req,res)=>{
+//     const data = req.body;
+//     const {requestId} = req.params
+//     try {
+//         const editRequest = await requestModel.updateOne({ _id: requestId }, data,{new:true});
+//         if (!editRequest){ 
+//           res.json({ msg: "No client found" }).status(404);
+//         } else {
+//           res.json(editRequest).status(200);
+//         }
+//       } catch (err) {
+//         res.json({ msg: err.message });
+//       }
+// }
 
 // deleterequest
 
