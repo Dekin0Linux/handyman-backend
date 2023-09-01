@@ -20,7 +20,7 @@ const port = process.env.PORT || 3001;
 dotenv.config();
 app.use(
   cors({
-    origin: "*",
+    origin:[ "*","https://handyhelp.onrender.com/"],
   })
 ); //ENABELING CORS
 
