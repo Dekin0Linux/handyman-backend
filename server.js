@@ -10,8 +10,9 @@ const freelancer = require("./routes/freelancerAuth");
 const booking = require("./routes/bookings");
 const transaction = require("./routes/Transactions");
 const business = require("./routes/business");
-const comments = require("./routes/comments");
+// const comments = require("./routes/comments");
 const request = require("./routes/Request");
+const comments = require("./routes/commentsRoute")
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -19,7 +20,7 @@ const port = process.env.PORT || 3001;
 dotenv.config();
 app.use(
   cors({
-    origin: "*",
+    origin:[ "*","https://handyhelp.onrender.com/"],
   })
 ); //ENABELING CORS
 
