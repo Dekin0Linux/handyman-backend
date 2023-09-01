@@ -12,18 +12,29 @@ const transaction = require("./routes/Transactions");
 const business = require("./routes/business");
 // const comments = require("./routes/comments");
 const request = require("./routes/Request");
-const comments = require("./routes/commentsRoute")
+const comments = require("./routes/commentsRoute");
 
 const app = express();
 const port = process.env.PORT || 3001;
 //configure doten
 dotenv.config();
-app.use(
-  cors({
-    origin:[ "*","https://hh-ocmv.onrender.com/","http://localhost:5173/"],
-    credentials: true,
-  })
-); //ENABELING CORS
+// app.use(
+//   cors({
+//     origin: ["*", "https://hh-ocmv.onrender.com/", "http://localhost:5173/"],
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// ); //ENABELING CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // Allow requests from any origin (you can specify specific origins instead of '*')
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allow the specified HTTP methods
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  ); // Allow the specified headers
+  next();
+});
 
 // MIDDLEWARES
 app.use(express.json());
@@ -35,7 +46,7 @@ app.use(express.static(path.join(__dirname, "Handyman")));
 mongoose.connect(process.env.MONGODB_URL, {}).then((resp) => {
   app.listen(port, () => {
     console.log(`Server is running on ${port}`);
-    console.log("Connected to DB");
+    console.log("Connected to DBase");
   });
 });
 
@@ -43,6 +54,6 @@ mongoose.connect(process.env.MONGODB_URL, {}).then((resp) => {
 app.use("/client", clientAuth);
 app.use("/freelancer", freelancer);
 app.use("/business", business);
-app.use('/comments',comments)
-app.use('/request',request)
-app.use('/transaction',transaction)
+app.use("/comments", comments);
+app.use("/request", request);
+app.use("/transaction", transaction);
