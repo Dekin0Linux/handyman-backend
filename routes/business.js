@@ -43,7 +43,7 @@ router.get("/:id", getBusiness);
 router.get("/getcatgory/:category",categoryFreelancer)
 
 // ADD NEW BUSINESS
-router.post("/newBusiness", uploadFile.single("image"), newBusiness);
+router.post("/", uploadFile.single("image"), newBusiness);
 
 // UPDATE BUSINESS
 router.patch("/updateBusiness/:businessId", updateBusiness);
