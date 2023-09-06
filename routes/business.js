@@ -47,7 +47,7 @@ router.post("/", uploadFile.single("image"), newBusiness);
 
 // UPDATE BUSINESS
 router.patch("/updateBusiness/:businessId", updateBusiness);
-router.patch("/addbalance/:businessId", addToBalance); // ADD MONEY TO BLANCE
+router.patch("/addBalance/:businessId", addToBalance); // ADD MONEY TO BLANCE
 router.patch("/deductBalance/:businessId", deductBalance); //DEDUCT FROM BALANCE
 
 // delete business

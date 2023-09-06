@@ -16,7 +16,7 @@ const getAllRequest = async (req, res) => {
   }
 };
 
-// get request by client id
+// get request by client id on pend
 const getRequestById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -37,7 +37,7 @@ const getRequestById = async (req, res) => {
 };
 
 
-// get request by client id
+// get request by client id on done
 const getRequestByIdOnDone = async (req, res) => {
     const { id } = req.params;
     try {
