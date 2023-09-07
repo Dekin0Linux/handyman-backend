@@ -16,7 +16,7 @@ const getAllRequest = async (req, res) => {
   }
 };
 
-// get request by client id
+// get request by client id on pend
 const getRequestById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -35,6 +35,27 @@ const getRequestById = async (req, res) => {
     res.json({ msg: err.message }).json(400);
   }
 };
+
+
+// get request by client id on done
+const getRequestByIdOnDone = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const getById = await requestModel
+        .find({ client: id })
+        .populate(["business", "client"])
+        .where("status")
+        .equals("done");
+      if (!getById) {
+        res.json({ msg: "User could not be found" }).status(404);
+      } else {
+        return res.json(getById).status(200);
+      }
+      // res.send(clientId)
+    } catch (err) {
+      res.json({ msg: err.message }).json(400);
+    }
+  };
 
 // add new request
 const newRequest = async (req, res) => {
@@ -106,4 +127,5 @@ module.exports = {
   getRequestById,
   updateRequest,
   deleteRequest,
+  getRequestByIdOnDone
 };

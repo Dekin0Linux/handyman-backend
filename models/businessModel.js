@@ -32,21 +32,21 @@ const businessSchema = mongoose.Schema({
     },
     isVerified :{
         type : Boolean,
-        default : false
+        default : true
     },
     status:{
         type : String,
-        enum : ["active","inactive"] ,
+        // enum : ["active","inactive"] ,
         default:"active",
     },
     ratings : {
         type : Number,
-        default : 50,
+        default : 1,
     },
-    comments : {
-        type:mongoose.Schema.ObjectId,
-        ref :"comment"
-    },
+    // comments : {
+    //     type:mongoose.Schema.ObjectId,
+    //     ref :"comment"
+    // },
     charge:{
         type:Number,
         default:0

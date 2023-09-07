@@ -111,7 +111,6 @@ const removeBusiness = async (req, res) => {
 const addToBalance = async (req, res) => {
   const { businessId } = req.params;
   const { amount } = req.body;
-
   try {
     // Convert the amount value to a number
     const amountToAdd = Number(amount);
@@ -131,7 +130,6 @@ const addToBalance = async (req, res) => {
       { _id: businessId },
       { $set: { balance: newBalance } }
     );
-
     res.json(updatedBusiness);
   } catch (err) {
     res.json({ msg: err.message });
