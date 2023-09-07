@@ -17,7 +17,7 @@ const getClients = async (req, res) => {
 const getSingleClient = async (req, res) => {
   const { clientId } = req.params;
 
-  const clients = await clientAuthModel.findOne({ id: clientId });
+  const clients = await clientAuthModel.findOne({ _id: clientId });
   try {
     if (!clients) {
       res.json({ msg: "No client found" });
@@ -159,7 +159,6 @@ const deductBalance = async (req, res) => {
   }
 };
 
-
 module.exports = {
   getClients,
   getSingleClient,
@@ -168,5 +167,5 @@ module.exports = {
   updateClient,
   deleteClient,
   addBalance,
-  deductBalance
+  deductBalance,
 };
