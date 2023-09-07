@@ -5,7 +5,7 @@ const router = require("express").Router()
 
 
 router.get('/',getAllFreelancers)
-router.post('/newFreelancer', newFreelancer)
+router.post('/', newFreelancer)
 
 
 module.exports = router
