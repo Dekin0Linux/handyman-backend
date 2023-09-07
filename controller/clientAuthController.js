@@ -112,16 +112,13 @@ const addBalance = async (req, res) => {
     if (!existingClient) {
       return res.json({ msg: "No business found" });
     }
-
     // Calculate the new balance
     const newBalance = existingClient.balance + amountToAdd;
-
     // Update the balance in the database
     const updatedClient = await clientAuthModel.updateOne(
       { _id: clientId },
       { $set: { balance: newBalance } }
     );
-
     res.json(updatedClient);
   } catch (err) {
     res.json({ msg: err.message });
