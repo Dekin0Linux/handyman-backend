@@ -17,7 +17,7 @@ const comments = require("./routes/commentsRoute");
 const app = express();
 const port = process.env.PORT || 3001;
 //configure doten
-dotenv.config();
+dotenv.config() ;
 // app.use(
 //   cors({
 //     origin: ["*", "https://hh-ocmv.onrender.com/", "http://localhost:5173/"],
