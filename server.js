@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const path = require("path");
+const path = require("path") ;
 
 // ROUTERS
 const clientAuth = require("./routes/clientAuth");
@@ -17,7 +17,7 @@ const comments = require("./routes/commentsRoute");
 const app = express();
 const port = process.env.PORT || 3001;
 //configure doten
-dotenv.config();
+dotenv.config() ;
 // app.use(
 //   cors({
 //     origin: ["*", "https://hh-ocmv.onrender.com/", "http://localhost:5173/"],
