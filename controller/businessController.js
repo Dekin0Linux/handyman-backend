@@ -152,6 +152,9 @@ const deductBalance = async (req, res) => {
       return res.json({ msg: "No business found" });
     }
 
+    if(existingBusiness.balance <= amountToDeduct){
+      return res.json({msg:"Insufficient Balance"})
+    }
     // Calculate the new balance
     const newBalance = existingBusiness.balance - amountToDeduct;
 
