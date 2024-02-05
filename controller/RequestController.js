@@ -43,6 +43,7 @@ const getRequestByIdOnDone = async (req, res) => {
     try {
       const getById = await requestModel
         .find({ client: id })
+        .sort({updatedAt:-1})
         .populate(["business", "client"])
         .where("status")
         .equals("done");
