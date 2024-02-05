@@ -151,7 +151,7 @@ const deductBalance = async (req, res) => {
     // Update the balance in the database
     const updatedClient = await clientAuthModel.updateOne(
       { _id: clientId },
-      { $set: { balance: newBalance } }
+      { $set: { balance: newBalance } },{new:true}
     );
 
     res.json(updatedClient);
