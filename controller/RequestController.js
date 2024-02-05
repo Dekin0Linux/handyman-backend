@@ -22,6 +22,7 @@ const getRequestById = async (req, res) => {
   try {
     const getById = await requestModel
       .find({ client: id })
+      .sort({updatedAt:-1})
       .populate(["business", "client"])
       .where("status")
       .equals("pend");
@@ -43,17 +44,18 @@ const getRequestByIdOnDone = async (req, res) => {
     try {
       const getById = await requestModel
         .find({ client: id })
+        .sort({updatedAt:-1})
         .populate(["business", "client"])
         .where("status")
         .equals("done");
       if (!getById) {
-        res.json({ msg: "User could not be found" }).status(404);
+        res.status(404).json({ msg: "User could not be found" });
       } else {
-        return res.json(getById).status(200);
+        return res.status(200).json(getById);
       }
       // res.send(clientId)
     } catch (err) {
-      res.json({ msg: err.message }).json(400);
+      res.json(500).json({ msg: err.message });
     }
   };
 
@@ -82,7 +84,7 @@ const updateRequest = async (req, res) => {
       new: true,
     });
     if (!editRequest) {
-      res.json({ msg: "No client found" }).status(404);
+      res.status(404).json({ msg: "No client found" });
     } else {
       res.json(editRequest).status(200);
     }
