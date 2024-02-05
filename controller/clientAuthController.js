@@ -156,7 +156,7 @@ const deductBalance = async (req, res) => {
 
     res.json(updatedClient);
   } catch (err) {
-    res.json({ msg: err.message });
+    res.json(err);
   }
 };
 
