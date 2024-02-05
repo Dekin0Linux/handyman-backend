@@ -141,7 +141,7 @@ const deductBalance = async (req, res) => {
       return res.json({ msg: "No business found" });
     }
 
-    if(existingClient.balance <= amountToAdd){
+    if(existingClient.balance < amountToAdd){
       return res.status(401).json({msg:"Insufficient Balance"})
     }
 
