@@ -37,7 +37,7 @@ const newClient = async (req, res) => {
     if (!addNew) {
       return res.status("409").json({ msg: "User not created" });
     }
-    res.json(addNew).status(200);
+    res.status(200).json({msg:"User Added", addNew});
   } catch (err) {
     res.json({ msg: err.message });
   }
