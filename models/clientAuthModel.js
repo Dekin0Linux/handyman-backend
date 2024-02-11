@@ -8,11 +8,13 @@ const userAuthSchema = mongoose.Schema(
     },
     fullname: {
       type: String,
-      // required:[ true,'Fullname is Required']
+      required:[ true,'Fullname is Required']
     },
     password: {
       type: String,
       required: true,
+      minlength: [10, "Password must be at least 8 characters long"],
+
     },
     address: {
       type: Object,
@@ -20,7 +22,7 @@ const userAuthSchema = mongoose.Schema(
     },
     phone_number: {
       type: String,
-      minlength: 10,
+      minlength: [10, "Phone number must be at least 10 characters long"],
     },
     occupation: {
       type: String,
