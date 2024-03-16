@@ -37,7 +37,7 @@ const newClient = async (req, res) => {
     if (!addNew) {
       return res.status("409").json({ msg: "User not created" });
     }
-    res.status(200).json({msg:"User Added", addNew});
+    res.status(200).json({ msg: "User Added", addNew });
   } catch (err) {
     res.json({ msg: err.message });
   }
@@ -141,8 +141,8 @@ const deductBalance = async (req, res) => {
       return res.json({ msg: "No business found" });
     }
 
-    if(existingClient.balance < amountToAdd){
-      return res.status(402).json({msg:"Insufficient Balance"})
+    if (existingClient.balance < amountToAdd) {
+      return res.json({ msg: "Insufficient Balance" });
     }
 
     // Calculate the new balance
@@ -151,12 +151,13 @@ const deductBalance = async (req, res) => {
     // Update the balance in the database
     const updatedClient = await clientAuthModel.updateOne(
       { _id: clientId },
-      { $set: { balance: newBalance } },{new:true}
+      { $set: { balance: newBalance } },
+      { new: true }
     );
 
-    res.json(updatedClient);
+    return res.json(updatedClient);
   } catch (err) {
-    res.json(err);
+    return res.json({ msg: err.message });
   }
 };
 
