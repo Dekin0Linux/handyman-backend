@@ -18,23 +18,27 @@ const app = express();
 const port = process.env.PORT || 3001;
 //configure doten
 dotenv.config() ;
-// app.use(
-//   cors({
-//     origin: ["*", "https://hh-ocmv.onrender.com/", "http://localhost:5173/"],
-//     credentials: true,
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   })
-// ); //ENABELING CORS
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // Allow requests from any origin (you can specify specific origins instead of '*')
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT,PATCH, DELETE, OPTIONS"); // Allow the specified HTTP methods
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  ); // Allow the specified headers
-  next();
-});
+
+
+app.use(
+  cors({
+    origin: ["*", "https://hh-ocmv.onrender.com/", "http://localhost:5173/"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+); //ENABELING CORS
+
+
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT,PATCH, DELETE, OPTIONS"); 
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   ); 
+// });
 
 // MIDDLEWARES
 app.use(express.json());

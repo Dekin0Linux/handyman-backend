@@ -6,10 +6,13 @@ const getClients = async (req, res) => {
   const clients = await clientAuthModel.find();
   try {
     if (!clients) {
-      res.json({ msg: "Sorry Bad request" });
-    } else [res.json(clients)];
+      return res.json({ msg: "Sorry Bad request" });
+    } 
+    console.log(clients);
+    return res.status(200).json(clients)
   } catch (err) {
-    res.send(err);
+    console.log(err)
+    res.json(err);
   }
 };
 
@@ -25,7 +28,7 @@ const getSingleClient = async (req, res) => {
       res.json(clients);
     }
   } catch (err) {
-    res.send(err);
+    res.json(err);
   }
 };
 

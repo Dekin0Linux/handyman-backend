@@ -1,6 +1,7 @@
 const freelancerModel = require('../models/freelancerAuthModel')
 
 
+// GET ALL FREEELANCERS 
 const getAllFreelancers=async(req,res)=>{
     try{
         const allFreelancersData=await freelancerModel.find({}).where("isActive").equals(true);
