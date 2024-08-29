@@ -14,7 +14,7 @@ const freelancerModel = require("../models/freelancerAuthModel");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../public/images");
+    cb(null, "/public/images");
   },
   filename: (req, file, cb) => {
     const file_name = Date.now() + "_" + file.originalname;
